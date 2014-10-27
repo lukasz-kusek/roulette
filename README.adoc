@@ -3,7 +3,9 @@
 === ABOUT
 
 Simple console implementation of roulette game.
+
 Players can place their bets using the standard input.
+
 Every 30 seconds one ball will be drawn and results will be printed to the standard output.
 
 === HOW-TO
@@ -30,8 +32,11 @@ Input format is:
 ----
 
 where
+
 * NAME is one of players names from players.txt file
+
 * BET is a single number from range 1-36, ODD or EVEN
+
 * AMOUNT is a number greater than 0.
 
 === COPYRIGHT
