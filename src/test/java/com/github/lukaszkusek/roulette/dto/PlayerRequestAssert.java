@@ -7,12 +7,8 @@ public class PlayerRequestAssert extends AbstractAssert<PlayerRequestAssert, Pla
 
     private Objects objects = Objects.instance();
 
-    private PlayerRequestAssert(PlayerRequest actual) {
+    public PlayerRequestAssert(PlayerRequest actual) {
         super(actual, PlayerRequestAssert.class);
-    }
-
-    public static PlayerRequestAssert assertThat(PlayerRequest actual) {
-        return new PlayerRequestAssert(actual);
     }
 
     public PlayerRequestAssert hasBet(String expected) {

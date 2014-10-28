@@ -14,7 +14,7 @@ public class Players {
     private final Map<String, Player> players;
 
     public Players(FileReader fileReader) {
-        players = fileReader.read()
+        players = fileReader.readAll()
                             .stream()
                             .map(Player::new)
                             .collect(Collectors.toMap(Player::getName, player -> player));

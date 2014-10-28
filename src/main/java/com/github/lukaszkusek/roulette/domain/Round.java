@@ -5,6 +5,8 @@ import com.google.common.base.Preconditions;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
+import com.github.lukaszkusek.roulette.domain.bets.Bet;
+import com.github.lukaszkusek.roulette.domain.bets.outcome.BetWithResult;
 
 import java.util.Collection;
 import java.util.Map;

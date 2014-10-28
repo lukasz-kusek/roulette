@@ -3,7 +3,7 @@ package com.github.lukaszkusek.roulette;
 import com.github.lukaszkusek.roulette.domain.FinishedRoundListener;
 import com.github.lukaszkusek.roulette.domain.Game;
 import com.github.lukaszkusek.roulette.domain.Roulette;
-import com.github.lukaszkusek.roulette.domain.factory.BetFactory;
+import com.github.lukaszkusek.roulette.domain.bets.BetFactory;
 import com.github.lukaszkusek.roulette.input.ConsoleReader;
 import com.github.lukaszkusek.roulette.output.ConsolePrinter;
 import com.github.lukaszkusek.roulette.output.Printer;

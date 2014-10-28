@@ -1,7 +1,7 @@
 package com.github.lukaszkusek.roulette.util;
 
-import com.github.lukaszkusek.roulette.domain.Bet;
-import com.github.lukaszkusek.roulette.domain.Outcome;
+import com.github.lukaszkusek.roulette.domain.bets.Bet;
+import com.github.lukaszkusek.roulette.domain.bets.outcome.Outcome;
 
 public interface BetResultBuilderValues {
 

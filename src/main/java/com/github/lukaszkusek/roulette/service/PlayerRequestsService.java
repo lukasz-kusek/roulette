@@ -1,9 +1,9 @@
 package com.github.lukaszkusek.roulette.service;
 
-import com.github.lukaszkusek.roulette.domain.Bet;
+import com.github.lukaszkusek.roulette.domain.bets.Bet;
 import com.github.lukaszkusek.roulette.domain.Game;
 import com.github.lukaszkusek.roulette.domain.Player;
-import com.github.lukaszkusek.roulette.domain.factory.BetFactory;
+import com.github.lukaszkusek.roulette.domain.bets.BetFactory;
 import com.github.lukaszkusek.roulette.dto.PlayerRequest;
 import com.github.lukaszkusek.roulette.repository.Players;
 

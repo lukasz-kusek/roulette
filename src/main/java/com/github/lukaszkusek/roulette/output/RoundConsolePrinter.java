@@ -1,7 +1,7 @@
 package com.github.lukaszkusek.roulette.output;
 
 import com.google.common.base.Strings;
-import com.github.lukaszkusek.roulette.domain.BetWithResult;
+import com.github.lukaszkusek.roulette.domain.bets.outcome.BetWithResult;
 import com.github.lukaszkusek.roulette.domain.Player;
 import com.github.lukaszkusek.roulette.domain.Round;
 import com.github.lukaszkusek.roulette.util.AmountConverter;

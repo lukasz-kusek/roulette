@@ -13,7 +13,7 @@ public class FileReader {
         this.lines = Files.readAllLines(path);
     }
 
-    public Collection<String> read() {
+    public Collection<String> readAll() {
         return lines;
     }
 }

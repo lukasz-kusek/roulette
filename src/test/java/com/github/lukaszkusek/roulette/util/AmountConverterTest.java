@@ -1,6 +1,5 @@
 package com.github.lukaszkusek.roulette.util;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import org.junit.Test;
 
@@ -8,6 +7,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static com.github.lukaszkusek.roulette.util.Collections.list;
 import static com.github.lukaszkusek.roulette.util.ThrowableCaptor.captureThrowable;
 
 public class AmountConverterTest {
@@ -41,16 +41,15 @@ public class AmountConverterTest {
     @Test
     public void shouldThrowAnExceptionOnInvalidAmount() {
         // given
-        Collection<String> values =
-                ImmutableList.of(
-                        "A",
-                        "0",
-                        "-1",
-                        "1.000",
-                        "1.001",
-                        String.valueOf(Long.MAX_VALUE),
-                        String.valueOf(Long.MAX_VALUE / 100 + 1)
-                );
+        Collection<String> values = list(
+                "A",
+                "0",
+                "-1",
+                "1.000",
+                "1.001",
+                String.valueOf(Long.MAX_VALUE),
+                String.valueOf(Long.MAX_VALUE / 100 + 1)
+        );
 
         values.forEach((input) -> {
             // when

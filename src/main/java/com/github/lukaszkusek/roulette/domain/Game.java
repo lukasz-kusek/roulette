@@ -1,5 +1,7 @@
 package com.github.lukaszkusek.roulette.domain;
 
+import com.github.lukaszkusek.roulette.domain.bets.Bet;
+
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 

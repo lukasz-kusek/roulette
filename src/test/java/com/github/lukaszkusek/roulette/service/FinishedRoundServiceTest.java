@@ -1,10 +1,9 @@
 package com.github.lukaszkusek.roulette.service;
 
-import com.github.lukaszkusek.roulette.domain.Bet;
-import com.github.lukaszkusek.roulette.domain.BetWithResult;
-import com.github.lukaszkusek.roulette.domain.Outcome;
+import com.github.lukaszkusek.roulette.domain.bets.outcome.BetWithResult;
 import com.github.lukaszkusek.roulette.domain.Player;
 import com.github.lukaszkusek.roulette.domain.Round;
+import com.github.lukaszkusek.roulette.domain.bets.Bet;
 import com.github.lukaszkusek.roulette.output.Printer;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -17,9 +16,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.util.Collection;
 import java.util.Map;
 
-import static java.util.Arrays.asList;
-import static com.github.lukaszkusek.roulette.domain.Outcome.LOSE;
-import static com.github.lukaszkusek.roulette.domain.Outcome.WIN;
+import static com.github.lukaszkusek.roulette.util.Collections.list;
 import static com.github.lukaszkusek.roulette.util.Maps.map;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.BDDMockito.then;
@@ -56,18 +53,10 @@ public class FinishedRoundServiceTest {
     @Test
     public void shouldAddWinsToPlayersTotalWins() {
         // given
-        Map<Player, Collection<BetWithResult>> playersBetsResults =
-                map(
-                        playerA, asList(
-                                betResult(WIN, 4l),
-                                betResult(LOSE, 0l),
-                                betResult(WIN, 36l)
-                        ),
-                        playerB, asList(
-                                betResult(WIN, 4l),
-                                betResult(LOSE, 0l)
-                        )
-                );
+        Map<Player, Collection<BetWithResult>> playersBetsResults = map(
+                playerA, list(win(4), lose(), win(36)),
+                playerB, list(win(4), lose())
+        );
         given(round.getPlayersBetsWithResults()).willReturn(playersBetsResults);
 
         // when
@@ -80,10 +69,10 @@ public class FinishedRoundServiceTest {
     }
 
     @Test
-    @Ignore("TODO - mockito reports that playerA.addToTotalBet(4) was not invoked, but it was. Weird.")
+    @Ignore("TODO - mockito reports that playerA.addToTotalBet(4) was not invoked, but it was. Weird." )
     public void shouldAddWinsToPlayersTotalWinsBeforePrintingPlayersTotals() {
         // given
-        Map<Player, Collection<BetWithResult>> playersBetsResults = map(playerA, asList(betResult(WIN, 4l)));
+        Map<Player, Collection<BetWithResult>> playersBetsResults = map(playerA, list(win(4)));
         given(round.getPlayersBetsWithResults()).willReturn(playersBetsResults);
 
         // when
@@ -108,10 +97,17 @@ public class FinishedRoundServiceTest {
         inOrder.verify(printer).printTotals();
     }
 
-    private BetWithResult betResult(Outcome outcome, long winnings) {
+    private BetWithResult win(long winnings) {
         BetWithResult betWithResult = mock(BetWithResult.class);
-        given(betWithResult.getOutcome()).willReturn(outcome);
+        given(betWithResult.isWin()).willReturn(true);
         given(betWithResult.getWinnings()).willReturn(winnings);
+
+        return betWithResult;
+    }
+
+    private BetWithResult lose() {
+        BetWithResult betWithResult = mock(BetWithResult.class);
+        given(betWithResult.isWin()).willReturn(false);
 
         return betWithResult;
     }

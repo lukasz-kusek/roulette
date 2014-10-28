@@ -1,25 +1,31 @@
-package com.github.lukaszkusek.roulette.domain;
+package com.github.lukaszkusek.roulette.domain.bets.outcome;
+
+import com.github.lukaszkusek.roulette.domain.bets.Bet;
 
 public class BetWithResult {
 
     private final Bet bet;
-    private final BetResult betResult;
+    private final BetOutcome betOutcome;
 
-    public BetWithResult(Bet bet, BetResult betResult) {
+    public BetWithResult(Bet bet, BetOutcome betOutcome) {
         this.bet = bet;
-        this.betResult = betResult;
+        this.betOutcome = betOutcome;
     }
 
     public Bet getBet() {
         return bet;
     }
 
+    public boolean isWin() {
+        return betOutcome.isWin();
+    }
+
     public Outcome getOutcome() {
-        return betResult.getOutcome();
+        return betOutcome.getOutcome();
     }
 
     public long getWinnings() {
-        return betResult.getWinnings();
+        return betOutcome.getWinnings();
     }
 
     @Override
@@ -30,7 +36,7 @@ public class BetWithResult {
         BetWithResult that = (BetWithResult) o;
 
         if (!bet.equals(that.bet)) return false;
-        if (!betResult.equals(that.betResult)) return false;
+        if (!betOutcome.equals(that.betOutcome)) return false;
 
         return true;
     }
@@ -38,7 +44,7 @@ public class BetWithResult {
     @Override
     public int hashCode() {
         int result = bet.hashCode();
-        result = 31 * result + betResult.hashCode();
+        result = 31 * result + betOutcome.hashCode();
         return result;
     }
 
@@ -46,7 +52,7 @@ public class BetWithResult {
     public String toString() {
         return "BetWithResult [" +
                 "bet=" + bet +
-                ", betResult=" + betResult +
+                ", betOutcome=" + betOutcome +
                 ']';
     }
 }

@@ -7,12 +7,8 @@ public class PlayerAssert extends AbstractAssert<PlayerAssert, Player> {
 
     private Objects objects = Objects.instance();
 
-    private PlayerAssert(Player actual) {
+    public PlayerAssert(Player actual) {
         super(actual, PlayerAssert.class);
-    }
-
-    public static PlayerAssert assertThat(Player actual) {
-        return new PlayerAssert(actual);
     }
 
     public PlayerAssert hasName(String expected) {

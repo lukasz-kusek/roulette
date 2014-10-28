@@ -18,7 +18,7 @@ public class Player {
         Iterable<String> split = Splitter.on(",").trimResults().split(line);
 
         int size = Iterables.size(split);
-        Preconditions.checkArgument(size >= 1 && size <= 3);
+        Preconditions.checkArgument(size == 1 || size == 3);
 
         name = Iterables.get(split, 0);
         totalWin = getAmount(split, 1);

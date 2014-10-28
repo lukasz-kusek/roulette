@@ -1,4 +1,4 @@
-package com.github.lukaszkusek.roulette.domain;
+package com.github.lukaszkusek.roulette.domain.bets;
 
 import org.assertj.core.api.AbstractAssert;
 import org.assertj.core.internal.Objects;
@@ -7,12 +7,8 @@ public class AbstractBetAssert extends AbstractAssert<AbstractBetAssert, Abstrac
 
     private Objects objects = Objects.instance();
 
-    private AbstractBetAssert(AbstractBet actual) {
+    public AbstractBetAssert(AbstractBet actual) {
         super(actual, AbstractBetAssert.class);
-    }
-
-    public static AbstractBetAssert assertThat(AbstractBet actual) {
-        return new AbstractBetAssert(actual);
     }
 
     public AbstractBetAssert hasAmount(long expected) {

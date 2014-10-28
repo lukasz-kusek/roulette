@@ -1,7 +1,7 @@
 package com.github.lukaszkusek.roulette.service;
 
+import com.github.lukaszkusek.roulette.domain.bets.outcome.BetWithResult;
 import com.github.lukaszkusek.roulette.domain.FinishedRoundListener;
-import com.github.lukaszkusek.roulette.domain.Outcome;
 import com.github.lukaszkusek.roulette.domain.Round;
 import com.github.lukaszkusek.roulette.output.Printer;
 
@@ -23,13 +23,9 @@ public class FinishedRoundService implements FinishedRoundListener {
     private void updatePlayersTotalWin(Round finishedRound) {
         finishedRound.getPlayersBetsWithResults().forEach(
                 (player, bets) ->
-                        bets.forEach(
-                                bet -> {
-                                    if (Outcome.WIN.equals(bet.getOutcome())) {
-                                        player.addToTotalWin(bet.getWinnings());
-                                    }
-                                }
-                        )
+                        bets.stream()
+                            .filter(BetWithResult::isWin)
+                            .forEach(bet -> player.addToTotalWin(bet.getWinnings()))
         );
     }
 

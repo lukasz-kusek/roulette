@@ -1,20 +1,14 @@
-package com.github.lukaszkusek.roulette.domain.factory;
+package com.github.lukaszkusek.roulette.domain.bets;
 
 import com.google.common.collect.ImmutableList;
 import org.assertj.core.api.Assertions;
-import com.github.lukaszkusek.roulette.domain.AbstractBet;
-import com.github.lukaszkusek.roulette.domain.AbstractBetAssert;
-import com.github.lukaszkusek.roulette.domain.Bet;
-import com.github.lukaszkusek.roulette.domain.EvenBet;
-import com.github.lukaszkusek.roulette.domain.OddBet;
-import com.github.lukaszkusek.roulette.domain.StraightBet;
-import com.github.lukaszkusek.roulette.domain.StraightBetAssert;
 import org.junit.Test;
 
 import java.util.Collection;
 
-import static java.util.Arrays.asList;
-import static com.github.lukaszkusek.roulette.domain.factory.BetFactoryTest.InputAndExpectedValues.forBet;
+import static com.github.lukaszkusek.roulette.domain.bets.BetFactoryTest.InputAndExpectedValues.forBet;
+import static com.github.lukaszkusek.roulette.util.Assertions.assertThat;
+import static com.github.lukaszkusek.roulette.util.Collections.list;
 import static com.github.lukaszkusek.roulette.util.ThrowableCaptor.captureThrowable;
 
 public class BetFactoryTest {
@@ -62,7 +56,7 @@ public class BetFactoryTest {
     public void shouldThrowAnExceptionInCaseOfInvalidBet() {
         // given
         long amount = 1l;
-        Collection<String> bets = asList("ABC", "0", "-1", "37", "");
+        Collection<String> bets = list("ABC", "0", "-1", "37", "" );
 
         bets.forEach(
                 bet -> {
@@ -72,14 +66,6 @@ public class BetFactoryTest {
                     // then
                     Assertions.assertThat(throwable).isInstanceOf(IllegalArgumentException.class);
                 });
-    }
-
-    private static StraightBetAssert assertThat(StraightBet createdBet) {
-        return StraightBetAssert.assertThat(createdBet);
-    }
-
-    private static AbstractBetAssert assertThat(Bet createdBet) {
-        return AbstractBetAssert.assertThat((AbstractBet) createdBet);
     }
 
     static class InputAndExpectedValues {

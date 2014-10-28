@@ -1,10 +1,10 @@
 package com.github.lukaszkusek.roulette.util;
 
-import com.github.lukaszkusek.roulette.domain.Outcome;
+import com.github.lukaszkusek.roulette.domain.bets.outcome.BetOutcome;
 
 public interface BetResultDefinition {
 
-    void resultIs(Outcome outcome, long winnings);
+    void resultIs(BetOutcome betOutcome);
 
-    BetResultBuilderValues resultShouldBe(Outcome outcome, long winnings);
+    BetResultBuilderValues resultShouldBe(BetOutcome betOutcome);
 }

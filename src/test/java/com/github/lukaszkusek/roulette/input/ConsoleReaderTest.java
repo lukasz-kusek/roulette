@@ -12,7 +12,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import static com.github.lukaszkusek.roulette.dto.PlayerRequestAssert.assertThat;
+import static com.github.lukaszkusek.roulette.util.Assertions.assertThat;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.timeout;
 

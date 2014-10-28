@@ -1,10 +1,10 @@
 package com.github.lukaszkusek.roulette.output;
 
-import com.github.lukaszkusek.roulette.domain.Bet;
-import com.github.lukaszkusek.roulette.domain.BetWithResult;
-import com.github.lukaszkusek.roulette.domain.Outcome;
+import com.github.lukaszkusek.roulette.domain.bets.outcome.BetWithResult;
+import com.github.lukaszkusek.roulette.domain.bets.outcome.Outcome;
 import com.github.lukaszkusek.roulette.domain.Player;
 import com.github.lukaszkusek.roulette.domain.Round;
+import com.github.lukaszkusek.roulette.domain.bets.Bet;
 import com.github.lukaszkusek.roulette.repository.Players;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,9 +17,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Optional;
 
-import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
-import static com.github.lukaszkusek.roulette.domain.Outcome.WIN;
+import static com.github.lukaszkusek.roulette.domain.bets.outcome.Outcome.WIN;
+import static com.github.lukaszkusek.roulette.util.Collections.list;
 import static com.github.lukaszkusek.roulette.util.Maps.map;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
@@ -50,7 +50,7 @@ public class ConsolePrinterTest {
         Player player = createPlayer("NAME");
         BetWithResult betWithResult = createBetWithResult("ODD", WIN, 3600l);
 
-        given(round.getPlayersBetsWithResults()).willReturn(map(player, asList(betWithResult)));
+        given(round.getPlayersBetsWithResults()).willReturn(map(player, list(betWithResult)));
         given(round.getDrawnBall()).willReturn(Optional.of(2));
 
         // when
@@ -68,7 +68,7 @@ public class ConsolePrinterTest {
         // given
         Player player = createPlayer("NAME", 1000l, 4500l);
 
-        given(players.getAll()).willReturn(asList(player));
+        given(players.getAll()).willReturn(list(player));
 
         // when
         consolePrinter.printTotals();

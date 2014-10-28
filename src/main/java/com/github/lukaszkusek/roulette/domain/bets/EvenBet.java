@@ -1,4 +1,4 @@
-package com.github.lukaszkusek.roulette.domain;
+package com.github.lukaszkusek.roulette.domain.bets;
 
 public class EvenBet extends AbstractBet {
 
@@ -9,11 +9,13 @@ public class EvenBet extends AbstractBet {
     }
 
     @Override
-    public BetResult calculateOutcome(int drawnBall) {
-        if (drawnBall % 2 != 0) {
-            return BetResult.LOSE;
-        }
-        return new BetResult(Outcome.WIN, WIN_FACTOR * getAmount());
+    protected boolean isWin(int drawnBall) {
+        return drawnBall % 2 == 0;
+    }
+
+    @Override
+    protected int winFactor() {
+        return WIN_FACTOR;
     }
 
     @Override

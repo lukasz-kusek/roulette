@@ -10,8 +10,8 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.Collection;
 
-import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
+import static com.github.lukaszkusek.roulette.util.Collections.list;
 
 public class FileReaderTest {
 
@@ -22,11 +22,11 @@ public class FileReaderTest {
     public void shouldReadLinesFromFile() throws IOException {
         // given
         Path path = folder.newFile().toPath();
-        Files.write(path, asList("A", "B"), StandardOpenOption.WRITE);
+        Files.write(path, list("A", "B" ), StandardOpenOption.WRITE);
 
         // when
         FileReader fileReader = new FileReader(path);
-        Collection<String> read = fileReader.read();
+        Collection<String> read = fileReader.readAll();
 
         // then
         assertThat(read).containsExactly("A", "B");

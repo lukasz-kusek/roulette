@@ -1,10 +1,6 @@
-package com.github.lukaszkusek.roulette.domain.factory;
+package com.github.lukaszkusek.roulette.domain.bets;
 
 import com.google.common.base.Preconditions;
-import com.github.lukaszkusek.roulette.domain.Bet;
-import com.github.lukaszkusek.roulette.domain.EvenBet;
-import com.github.lukaszkusek.roulette.domain.OddBet;
-import com.github.lukaszkusek.roulette.domain.StraightBet;
 
 public class BetFactory {
 

@@ -9,12 +9,8 @@ public class RoundAssert extends AbstractAssert<RoundAssert, Round> {
 
     private Objects objects = Objects.instance();
 
-    private RoundAssert(Round actual) {
+    public RoundAssert(Round actual) {
         super(actual, RoundAssert.class);
-    }
-
-    public static RoundAssert assertThat(Round actual) {
-        return new RoundAssert(actual);
     }
 
     public RoundAssert hasDrawnBall(int expected) {

@@ -1,5 +1,8 @@
 package com.github.lukaszkusek.roulette.domain;
 
+import com.github.lukaszkusek.roulette.domain.bets.Bet;
+import com.github.lukaszkusek.roulette.domain.bets.outcome.BetOutcome;
+import com.github.lukaszkusek.roulette.domain.bets.outcome.BetWithResult;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
@@ -10,10 +13,12 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.util.List;
 
-import static java.util.Arrays.asList;
 import static org.assertj.core.data.MapEntry.entry;
-import static com.github.lukaszkusek.roulette.domain.RoundAssert.assertThat;
+import static com.github.lukaszkusek.roulette.domain.bets.outcome.BetOutcome.lose;
+import static com.github.lukaszkusek.roulette.domain.bets.outcome.BetOutcome.win;
+import static com.github.lukaszkusek.roulette.util.Assertions.assertThat;
 import static com.github.lukaszkusek.roulette.util.BetResultBuilder.forBet;
+import static com.github.lukaszkusek.roulette.util.Collections.list;
 import static org.mockito.BDDMockito.then;
 import static org.mockito.Mockito.times;
 
@@ -106,9 +111,9 @@ public class GameTest {
     @Test
     public void shouldCalculateBetsOutcomes() {
         // given
-        forBet(bet1).andDrawnBall(1).resultIs(Outcome.WIN, 4l);
-        forBet(bet2).andDrawnBall(1).resultIs(Outcome.LOSE, 0l);
-        forBet(bet3).andDrawnBall(1).resultIs(Outcome.WIN, 36l);
+        forBet(bet1).andDrawnBall(1).resultIs(win(4l));
+        forBet(bet2).andDrawnBall(1).resultIs(lose());
+        forBet(bet3).andDrawnBall(1).resultIs(win(36l));
 
         // when
         game.place(playerA, bet1);
@@ -125,19 +130,19 @@ public class GameTest {
         Round round = roundCaptor.getValue();
 
         assertThat(round).hasPlayersBetsWithResults(
-                entry(playerA, asList(
-                        betWithResult(bet1, Outcome.WIN, 4l),
-                        betWithResult(bet2, Outcome.LOSE, 0l),
-                        betWithResult(bet3, Outcome.WIN, 36l)
+                entry(playerA, list(
+                        betWithResult(bet1, win(4l)),
+                        betWithResult(bet2, lose()),
+                        betWithResult(bet3, win(36l))
                 )),
-                entry(playerB, asList(
-                        betWithResult(bet1, Outcome.WIN, 4l),
-                        betWithResult(bet2, Outcome.LOSE, 0l)
+                entry(playerB, list(
+                        betWithResult(bet1, win(4l)),
+                        betWithResult(bet2, lose())
                 ))
         );
     }
 
-    private BetWithResult betWithResult(Bet bet, Outcome win, long winnings) {
-        return new BetWithResult(bet, new BetResult(win, winnings));
+    private BetWithResult betWithResult(Bet bet, BetOutcome betOutcome) {
+        return new BetWithResult(bet, betOutcome);
     }
 }

@@ -5,6 +5,9 @@ import com.google.common.base.Splitter;
 import com.google.common.collect.Iterables;
 import com.github.lukaszkusek.roulette.util.AmountConverter;
 
+/**
+ * Holds data passed from player.
+ */
 public class ConsolePlayerRequest implements PlayerRequest {
 
     private final String playerName;

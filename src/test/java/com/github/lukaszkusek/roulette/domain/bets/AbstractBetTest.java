@@ -1,9 +1,10 @@
-package com.github.lukaszkusek.roulette.domain;
+package com.github.lukaszkusek.roulette.domain.bets;
 
 import com.google.common.collect.ImmutableList;
+import com.github.lukaszkusek.roulette.domain.bets.outcome.BetOutcome;
 import com.github.lukaszkusek.roulette.util.BetResultBuilderValues;
 
-import static com.github.lukaszkusek.roulette.domain.BetResultAssert.assertThat;
+import static com.github.lukaszkusek.roulette.util.Assertions.assertThat;
 
 public abstract class AbstractBetTest {
 
@@ -14,10 +15,10 @@ public abstract class AbstractBetTest {
                     Bet bet = input.getBet();
 
                     // when
-                    BetResult betResult = bet.calculateOutcome(input.getDrawnBall());
+                    BetOutcome betOutcome = bet.calculateOutcome(input.getDrawnBall());
 
                     // then
-                    assertThat(betResult)
+                    assertThat(betOutcome)
                             .hasOutcome(input.getOutcome())
                             .hasWinnings(input.getWinnings());
                 }

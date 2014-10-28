@@ -2,7 +2,7 @@ package com.github.lukaszkusek.roulette.domain;
 
 import org.junit.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static com.github.lukaszkusek.roulette.util.Assertions.assertThat;
 
 public class PlayerTest {
 
@@ -15,7 +15,7 @@ public class PlayerTest {
         player.addToTotalWin(10);
 
         // then
-        assertThat(player.getTotalWin()).isEqualTo(10);
+        assertThat(player).hasTotalWin(10);
     }
 
     @Test
@@ -27,7 +27,7 @@ public class PlayerTest {
         player.addToTotalBet(20);
 
         // then
-        assertThat(player.getTotalBet()).isEqualTo(20);
+        assertThat(player).hasTotalBet(20);
     }
 
     @Test

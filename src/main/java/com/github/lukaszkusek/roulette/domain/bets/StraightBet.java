@@ -1,4 +1,4 @@
-package com.github.lukaszkusek.roulette.domain;
+package com.github.lukaszkusek.roulette.domain.bets;
 
 import com.google.common.annotations.VisibleForTesting;
 
@@ -15,11 +15,13 @@ public class StraightBet extends AbstractBet {
     }
 
     @Override
-    public BetResult calculateOutcome(int drawnBall) {
-        if (number != drawnBall) {
-            return BetResult.LOSE;
-        }
-        return new BetResult(Outcome.WIN, WIN_FACTOR * getAmount());
+    protected boolean isWin(int drawnBall) {
+        return number == drawnBall;
+    }
+
+    @Override
+    protected int winFactor() {
+        return WIN_FACTOR;
     }
 
     @VisibleForTesting

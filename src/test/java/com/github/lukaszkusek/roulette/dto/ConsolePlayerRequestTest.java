@@ -1,11 +1,10 @@
 package com.github.lukaszkusek.roulette.dto;
 
 import com.google.common.collect.ImmutableList;
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
 
 import static com.github.lukaszkusek.roulette.dto.ConsolePlayerRequestTest.InputAndExpectedValues.playerRequest;
-import static com.github.lukaszkusek.roulette.dto.PlayerRequestAssert.assertThat;
+import static com.github.lukaszkusek.roulette.util.Assertions.assertThat;
 import static com.github.lukaszkusek.roulette.util.ThrowableCaptor.captureThrowable;
 
 public class ConsolePlayerRequestTest {
@@ -77,7 +76,7 @@ public class ConsolePlayerRequestTest {
                     Throwable throwable = captureThrowable(ConsolePlayerRequest::new, input);
 
                     // then
-                    Assertions.assertThat(throwable).isInstanceOf(IllegalArgumentException.class);
+                    assertThat(throwable).isInstanceOf(IllegalArgumentException.class);
                 });
     }
 

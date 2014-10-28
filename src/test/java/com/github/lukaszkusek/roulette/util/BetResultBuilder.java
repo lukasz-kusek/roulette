@@ -1,8 +1,8 @@
 package com.github.lukaszkusek.roulette.util;
 
-import com.github.lukaszkusek.roulette.domain.Bet;
-import com.github.lukaszkusek.roulette.domain.BetResult;
-import com.github.lukaszkusek.roulette.domain.Outcome;
+import com.github.lukaszkusek.roulette.domain.bets.Bet;
+import com.github.lukaszkusek.roulette.domain.bets.outcome.BetOutcome;
+import com.github.lukaszkusek.roulette.domain.bets.outcome.Outcome;
 
 import static org.mockito.BDDMockito.given;
 
@@ -10,8 +10,7 @@ public class BetResultBuilder implements BetResultDefinition, BetDefinition, Bet
 
     private Bet bet;
     private int drawnBall;
-    private Outcome outcome;
-    private long winnings;
+    private BetOutcome betOutcome;
 
     private BetResultBuilder(Bet bet) {
         this.bet = bet;
@@ -29,14 +28,13 @@ public class BetResultBuilder implements BetResultDefinition, BetDefinition, Bet
 
 
     @Override
-    public void resultIs(Outcome outcome, long winnings) {
-        given(bet.calculateOutcome(drawnBall)).willReturn(new BetResult(outcome, winnings));
+    public void resultIs(BetOutcome betOutcome) {
+        given(bet.calculateOutcome(drawnBall)).willReturn(betOutcome);
     }
 
     @Override
-    public BetResultBuilderValues resultShouldBe(Outcome outcome, long winnings) {
-        this.outcome = outcome;
-        this.winnings = winnings;
+    public BetResultBuilderValues resultShouldBe(BetOutcome betOutcome) {
+        this.betOutcome = betOutcome;
         return this;
     }
 
@@ -52,11 +50,11 @@ public class BetResultBuilder implements BetResultDefinition, BetDefinition, Bet
 
     @Override
     public Outcome getOutcome() {
-        return outcome;
+        return betOutcome.getOutcome();
     }
 
     @Override
     public long getWinnings() {
-        return winnings;
+        return betOutcome.getWinnings();
     }
 }
